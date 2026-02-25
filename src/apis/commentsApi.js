@@ -1,8 +1,9 @@
 import { requestApi } from './requestApi';
+import { toSafeList, toSafeNextCursor } from './utils';
 
 const toCommentListResponse = (payload) => ({
-  list: Array.isArray(payload?.list) ? payload.list : [],
-  nextCursor: payload?.nextCursor ?? null,
+  list: toSafeList(payload),
+  nextCursor: toSafeNextCursor(payload),
 });
 
 export async function fetchArticleCommentList(

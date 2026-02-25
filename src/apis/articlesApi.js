@@ -1,9 +1,10 @@
 import { requestApi } from './requestApi';
 import { parseArticleId } from '@/utils/articleId';
+import { toSafeList, toSafeTotalCount } from './utils';
 
 const toArticleListResponse = (payload) => ({
-  list: Array.isArray(payload?.list) ? payload.list : [],
-  totalCount: Number(payload?.totalCount ?? 0),
+  list: toSafeList(payload),
+  totalCount: toSafeTotalCount(payload),
 });
 
 const toValidArticleId = (articleId) => {
@@ -17,6 +18,7 @@ const toValidArticleId = (articleId) => {
 };
 
 const toOptionalImage = (image) => image?.trim?.() || undefined;
+const isNotFoundStatusError = (error) => error?.status === 404;
 
 export async function fetchArticleList(
   { page = 1, pageSize = 10, orderBy = 'recent', keyword = '' } = {},
@@ -38,6 +40,18 @@ export async function fetchArticleList(
 export async function fetchArticleDetail(articleId, requestOptions = {}) {
   const validArticleId = toValidArticleId(articleId);
   return requestApi(`/articles/${validArticleId}`, requestOptions);
+}
+
+export async function fetchArticleDetailOrNull(articleId, requestOptions = {}) {
+  try {
+    return await fetchArticleDetail(articleId, requestOptions);
+  } catch (error) {
+    if (isNotFoundStatusError(error)) {
+      return null;
+    }
+
+    throw error;
+  }
 }
 
 export async function createArticle({ title, content, image = '' }) {

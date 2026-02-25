@@ -1,6 +1,7 @@
 export {
   fetchArticleList,
   fetchArticleDetail,
+  fetchArticleDetailOrNull,
   createArticle,
   updateArticle,
   deleteArticle,
