@@ -1,5 +1,5 @@
 import { requestApi } from './requestApi';
-import { toSafeList, toSafeNextCursor } from './utils';
+import { toSafeList, toSafeNextCursor } from '@/utils';
 
 const toCommentListResponse = (payload) => ({
   list: toSafeList(payload),

@@ -1,6 +1,6 @@
 import { requestApi } from './requestApi';
-import { parseArticleId } from '@/utils/articleId';
-import { toSafeList, toSafeTotalCount } from './utils';
+import { parseArticleId } from '@/utils';
+import { toSafeList, toSafeTotalCount } from '@/utils';
 
 const toArticleListResponse = (payload) => ({
   list: toSafeList(payload),
