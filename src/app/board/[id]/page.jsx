@@ -51,20 +51,13 @@ export default async function BoardDetailPage({ params }) {
     notFound();
   }
 
-  let article;
-  let commentResponse;
+  const [article, commentResponse] = await Promise.all([
+    fetchArticleDetail(articleId, staticRequestOptions),
+    fetchArticleCommentList({ articleId, limit: 10 }, staticRequestOptions),
+  ]);
 
-  try {
-    [article, commentResponse] = await Promise.all([
-      fetchArticleDetail(articleId, staticRequestOptions),
-      fetchArticleCommentList({ articleId, limit: 10 }, staticRequestOptions),
-    ]);
-  } catch (error) {
-    if (error?.status === 404) {
-      notFound();
-    }
-
-    throw error;
+  if (!article) {
+    notFound();
   }
 
   return (
