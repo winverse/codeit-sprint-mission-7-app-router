@@ -2,7 +2,7 @@
 
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
-import { deleteArticle } from '@/apis/pandaMarket';
+import { deleteArticle } from '@/apis';
 import * as styles from './DeleteArticleButton.css';
 
 export function DeleteArticleButton({ articleId, className = '' }) {

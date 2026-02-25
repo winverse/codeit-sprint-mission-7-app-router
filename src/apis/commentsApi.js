@@ -1,15 +1,14 @@
-import { requestApi } from './request';
+import { requestApi } from './requestApi';
 
 const toCommentListResponse = (payload) => ({
   list: Array.isArray(payload?.list) ? payload.list : [],
   nextCursor: payload?.nextCursor ?? null,
 });
 
-export async function fetchArticleCommentList({
-  articleId,
-  limit = 10,
-  cursor,
-} = {}, requestOptions = {}) {
+export async function fetchArticleCommentList(
+  { articleId, limit = 10, cursor } = {},
+  requestOptions = {},
+) {
   const payload = await requestApi(`/articles/${articleId}/comments`, {
     query: { limit, cursor },
     ...requestOptions,

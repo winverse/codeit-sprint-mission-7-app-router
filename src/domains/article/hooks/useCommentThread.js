@@ -6,7 +6,7 @@ import {
   deleteComment,
   fetchArticleCommentList,
   updateComment,
-} from '@/apis/pandaMarket';
+} from '@/apis';
 import { toErrorMessage } from '@/domains/article/utils/articleMessages';
 
 export function useCommentThread({

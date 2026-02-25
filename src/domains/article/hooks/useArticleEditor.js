@@ -2,11 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import {
-  createArticle,
-  fetchArticleDetail,
-  updateArticle,
-} from '@/apis/pandaMarket';
+import { createArticle, fetchArticleDetail, updateArticle } from '@/apis';
 import { toErrorMessage } from '@/domains/article/utils/articleMessages';
 import { parseArticleId } from '@/utils/articleId';
 

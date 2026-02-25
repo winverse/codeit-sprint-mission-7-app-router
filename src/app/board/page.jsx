@@ -1,6 +1,6 @@
 import { BoardPageContainer } from '@/domains/board/containers/BoardPageContainer';
 import { parseBoardSearchParams } from '@/domains/board/utils/boardQuery';
-import { fetchArticleList } from '@/apis/pandaMarket';
+import { fetchArticleList } from '@/apis';
 
 export default async function BoardPage({ searchParams }) {
   const resolvedSearchParams = await searchParams;

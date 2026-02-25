@@ -1,4 +1,4 @@
-import { requestApi } from './request';
+import { requestApi } from './requestApi';
 import { parseArticleId } from '@/utils/articleId';
 
 const toArticleListResponse = (payload) => ({
@@ -18,12 +18,10 @@ const toValidArticleId = (articleId) => {
 
 const toOptionalImage = (image) => image?.trim?.() || undefined;
 
-export async function fetchArticleList({
-  page = 1,
-  pageSize = 10,
-  orderBy = 'recent',
-  keyword = '',
-} = {}, requestOptions = {}) {
+export async function fetchArticleList(
+  { page = 1, pageSize = 10, orderBy = 'recent', keyword = '' } = {},
+  requestOptions = {},
+) {
   const payload = await requestApi('/articles', {
     query: {
       page,
