@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createArticle, fetchArticleDetail, updateArticle } from '@/apis';
 import { toErrorMessage } from '@/domains/article/utils/articleMessages';
-import { parseArticleId } from '@/utils/articleId';
+import { parseArticleId } from '@/utils';
 
 export function useArticleEditor(articleId) {
   const router = useRouter();

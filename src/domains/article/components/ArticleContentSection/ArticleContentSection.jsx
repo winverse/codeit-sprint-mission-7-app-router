@@ -5,7 +5,7 @@ import { IMAGE_SIZES } from '@/constants/uiDimensions';
 import { DeleteArticleButton } from '@/domains/article/components/DeleteArticleButton';
 import * as styles from './ArticleContentSection.css';
 import { lineDivider } from '@/styles/shared.css';
-import { formatShortDate } from '@/utils/dateUtils';
+import { formatShortDate } from '@/utils';
 
 export function ArticleContentSection({ article }) {
   return (

@@ -1,5 +1,5 @@
 import { ArticleEditorContainer } from '@/domains/article/containers/ArticleEditorContainer';
-import { parseArticleId } from '@/utils/articleId';
+import { parseArticleId } from '@/utils';
 
 export default async function AddArticlePage({ searchParams }) {
   const resolvedSearchParams = await searchParams;

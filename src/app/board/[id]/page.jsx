@@ -5,7 +5,7 @@ import {
   fetchArticleDetail,
   fetchArticleList,
 } from '@/apis';
-import { parseArticleId } from '@/utils/articleId';
+import { parseArticleId } from '@/utils';
 
 const STATIC_ARTICLE_COUNT = 6;
 const STATIC_REVALIDATE_SECONDS = 300;
@@ -42,7 +42,7 @@ export async function generateStaticParams() {
   }
 }
 
-// build 시 사전 생성된 id와, 런타임에 온디맨드로 생성된 id를 모두 처리합니다.
+// pnpm build 시 사전 생성된 id와, 런타임에 온디맨드로 생성된 id를 모두 처리합니다.
 export default async function BoardDetailPage({ params }) {
   const { id } = await params;
   const articleId = parseArticleId(id);

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { LikeCountDisplay } from '@/components/LikeCountDisplay';
 import { IMAGE_SIZES } from '@/constants/uiDimensions';
 import * as styles from '../BoardArticleList.css';
-import { formatShortDate } from '@/utils/dateUtils';
+import { formatShortDate } from '@/utils';
 
 export function BoardArticleListItem({ article }) {
   return (

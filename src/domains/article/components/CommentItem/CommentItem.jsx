@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { IMAGE_SIZES } from '@/constants/uiDimensions';
 import * as styles from './CommentItem.css';
-import { formatRelativeDate } from '@/utils/dateUtils';
+import { formatRelativeDate } from '@/utils';
 
 export function CommentItem({ item, onDelete, onUpdate }) {
   const [isEditing, setIsEditing] = useState(false);
