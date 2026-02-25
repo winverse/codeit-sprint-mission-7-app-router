@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import { ArticleDetailContainer } from '@/domains/article/containers/ArticleDetailContainer';
 import {
   fetchArticleCommentList,
-  fetchArticleDetailOrNull,
+  fetchArticleDetail,
   fetchArticleList,
 } from '@/apis';
 import { parseArticleId } from '@/utils/articleId';
@@ -51,7 +51,14 @@ export default async function BoardDetailPage({ params }) {
     notFound();
   }
 
-  const article = await fetchArticleDetailOrNull(articleId, staticRequestOptions);
+  let article = null;
+  try {
+    article = await fetchArticleDetail(articleId, staticRequestOptions);
+  } catch (error) {
+    if (error?.status !== 404) {
+      throw error;
+    }
+  }
 
   if (!article) {
     notFound();
