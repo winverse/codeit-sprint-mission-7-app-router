@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import { ArticleDetailContainer } from '@/domains/article/containers/ArticleDetailContainer';
 import {
   fetchArticleCommentList,
-  fetchArticleDetail,
+  fetchArticleDetailOrNull,
   fetchArticleList,
 } from '@/apis';
 import { parseArticleId } from '@/utils/articleId';
@@ -51,14 +51,16 @@ export default async function BoardDetailPage({ params }) {
     notFound();
   }
 
-  const [article, commentResponse] = await Promise.all([
-    fetchArticleDetail(articleId, staticRequestOptions),
-    fetchArticleCommentList({ articleId, limit: 10 }, staticRequestOptions),
-  ]);
+  const article = await fetchArticleDetailOrNull(articleId, staticRequestOptions);
 
   if (!article) {
     notFound();
   }
+
+  const commentResponse = await fetchArticleCommentList(
+    { articleId, limit: 10 },
+    staticRequestOptions,
+  );
 
   return (
     <ArticleDetailContainer
