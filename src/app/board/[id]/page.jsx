@@ -51,14 +51,13 @@ export default async function BoardDetailPage({ params }) {
     notFound();
   }
 
-  let article = null;
-  try {
-    article = await fetchArticleDetail(articleId, staticRequestOptions);
-  } catch (error) {
-    if (error?.status !== 404) {
-      throw error;
-    }
-  }
+  const article = await fetchArticleDetail(
+    articleId,
+    staticRequestOptions,
+  ).catch((error) => {
+    if (error?.status === 404) return null;
+    throw error;
+  });
 
   if (!article) {
     notFound();
